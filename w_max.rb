@@ -11,15 +11,35 @@ end
 # O(n log n) time complexity
 # O(n) space complexity
 
-Class Myqueue
+class MyQueue
 
     def initialize
         @store = []
     end
+
+    def peek
+        @store.first
+    end
+
+    def size
+        @store.length
+    end
+
+    def empty?
+        return true if @store.empty?
+        false
+    end
+
+    def enqueue(ele)
+        @store.push(ele)
+    end
+
+    def dequeue
+        @store.shift
+    end
 end
 
-
-p w_max1([1, 0, 2, 5, 4, 8], 2) == 4 # 4, 8
-p w_max1([1, 0, 2, 5, 4, 8], 3) == 5 # 0, 2, 5
-p w_max1([1, 0, 2, 5, 4, 8], 4) == 6 # 2, 5, 4, 8
-p w_max1([1, 3, 2, 5, 4, 8], 5) == 6 # 3, 2, 5, 4, 8
+# p w_max1([1, 0, 2, 5, 4, 8], 2) == 4 # 4, 8
+# p w_max1([1, 0, 2, 5, 4, 8], 3) == 5 # 0, 2, 5
+# p w_max1([1, 0, 2, 5, 4, 8], 4) == 6 # 2, 5, 4, 8
+# p w_max1([1, 3, 2, 5, 4, 8], 5) == 6 # 3, 2, 5, 4, 8
