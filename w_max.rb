@@ -11,6 +11,11 @@ end
 # O(n log n) time complexity
 # O(n) space complexity
 
+# p w_max1([1, 0, 2, 5, 4, 8], 2) == 4 # 4, 8
+# p w_max1([1, 0, 2, 5, 4, 8], 3) == 5 # 0, 2, 5
+# p w_max1([1, 0, 2, 5, 4, 8], 4) == 6 # 2, 5, 4, 8
+# p w_max1([1, 3, 2, 5, 4, 8], 5) == 6 # 3, 2, 5, 4, 8
+
 class MyQueue
 
     def initialize
@@ -39,7 +44,29 @@ class MyQueue
     end
 end
 
-# p w_max1([1, 0, 2, 5, 4, 8], 2) == 4 # 4, 8
-# p w_max1([1, 0, 2, 5, 4, 8], 3) == 5 # 0, 2, 5
-# p w_max1([1, 0, 2, 5, 4, 8], 4) == 6 # 2, 5, 4, 8
-# p w_max1([1, 3, 2, 5, 4, 8], 5) == 6 # 3, 2, 5, 4, 8
+class MyStack
+    def initialize
+        @store = []
+    end
+
+    def peek
+        @store.last
+    end
+
+    def size
+        @store.length
+    end
+
+    def empty?
+        @store.empty?
+    end
+
+    def pop
+        @store.pop
+    end
+
+    def push(ele)
+        @store.push(ele)
+    end
+end
+
