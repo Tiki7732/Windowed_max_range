@@ -101,13 +101,11 @@ end
 
 class MinMaxStack
     def initialize
-        @store = []
-        @min = 0
-        @max = 0
+        @store = MyStack.new
     end
 
     def peek
-        @store.first
+        @store.peek[:value] unless empty?
     end
 
     def size
@@ -118,18 +116,43 @@ class MinMaxStack
         @store.empty?
     end
 
-    def push(ele)
-        if @store.emtpy?
-            @min = ele
-            @max = ele
-        else
-            @min = ele if ele < @min
-            @max = ele if ele > @max
-        end
-        @store.push(ele)
+    def max
+        @store.peek[:max] unless empty?
     end
 
+    def min
+        @store.peek[:min] unless empty?
+    end
+
+    def push(ele)
+        @store.push({min: new_min(ele),
+                    value: ele,
+                    max: new_max(ele)})
+    end
+
+    def new_max(ele)
+        return ele if empty?
+        ele > max ? ele : max
+    end
+
+    def new_min(ele)
+        return ele if empty?
+        ele < min ? ele : min
+    end
 end
+# stack = MinMaxStack.new
+# p stack.peek
+# stack.push(5)
+# stack.push(6)
+# stack.push(7)
+# p stack.peek
+# p stack.min
+
+# stack.push(12)
+# stack.push(1)
+# p stack.peek
+# p stack.max
+# p stack.min
 
 
 class MinMaxStackQueue
