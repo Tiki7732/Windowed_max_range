@@ -109,7 +109,7 @@ class MinMaxStack
     end
 
     def size
-        @store.length
+        @store.size
     end
 
     def empty?
@@ -128,6 +128,10 @@ class MinMaxStack
         @store.push({min: new_min(ele),
                     value: ele,
                     max: new_max(ele)})
+    end
+    
+    def pop
+        @store.pop[:value] unless empty?
     end
 
     def new_max(ele)
@@ -203,6 +207,28 @@ end
 # stack.enqueue(5)
 # stack.enqueue(6)
 # stack.enqueue(7)
+# stack.enqueue(12)
+# stack.enqueue(1)
+# p "--"
+# stack.reverse_stack
+# stack.dequeue
+# stack.min
+#  stack.max
 
-# p stack.min
-# p stack.max
+def w_max2(array, window)
+    queue = MinMaxStackQueue.new
+    best_range = nil
+    array.each do |ele|
+        queue.enqueue(ele)
+        queue.dequeue if queue.size > window
+        if window == queue.size
+            current_range = queue.max - queue.min
+            best_range = current_range if !best_range || current_range > best_range
+        end
+    end
+   best_range
+end
+p w_max2([1, 0, 2, 5, 4, 8], 2) == 4 # 4, 8
+p w_max2([1, 0, 2, 5, 4, 8], 3) == 5 # 0, 2, 5
+p w_max2([1, 0, 2, 5, 4, 8], 4) == 6 # 2, 5, 4, 8
+p w_max2([1, 3, 2, 5, 4, 8], 5) == 6 # 3, 2, 5, 4, 8
