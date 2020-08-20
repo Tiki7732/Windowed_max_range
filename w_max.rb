@@ -98,3 +98,39 @@ class StackQueue
         @out_stack.push(@in_stack.pop) until @in_stack.empty?
     end
 end
+
+class MinMaxStack
+    def initialize
+        @store = []
+        @min = 0
+        @max = 0
+    end
+
+    def peek
+        @store.first
+    end
+
+    def size
+        @store.length
+    end
+
+    def empty?
+        @store.empty?
+    end
+
+    def push(ele)
+        if @store.emtpy?
+            @min = ele
+            @max = ele
+        else
+            @min = ele if ele < @min
+            @max = ele if ele > @max
+        end
+        @store.push(ele)
+    end
+
+end
+
+
+class MinMaxStackQueue
+end
