@@ -156,4 +156,22 @@ end
 
 
 class MinMaxStackQueue
+    
+    def initialize
+        @in_stack = MinMaxStack.new
+        @out_stack = MinMaxStack.new
+    end
+
+    def size
+        @in_stack.size + @out_stack.size
+    end
+
+    def emtpy?
+        @in_stack.empty? && @out_stack.emtpy?
+    end
+
+    def enqueue(ele)
+        @in_stack.push(ele)
+    end
+
 end
