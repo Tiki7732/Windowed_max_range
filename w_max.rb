@@ -70,3 +70,6 @@ class MyStack
     end
 end
 
+class StackQueue
+
+end
