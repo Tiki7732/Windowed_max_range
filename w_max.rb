@@ -72,4 +72,29 @@ end
 
 class StackQueue
 
+    def initialize
+        @in_stack = MyStack.new
+        @out_stack = MyStack.new
+    end
+
+    def size
+        @in_stack.size + @out_stack.size
+    end
+
+    def empty?
+        @in_stack.emtpy? && @out_stack.emtpy?
+    end
+
+    def enqueue(ele)
+        @in_stack.push(ele)
+    end
+
+    def dequeue
+        reverse_stack if @out_stack.empty?
+        @out_stack.pop
+    end
+
+    def reverse_stack
+        @out_stack.push(@in_stack.pop) until @in_stack.empty?
+    end
 end
