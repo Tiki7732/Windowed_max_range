@@ -142,6 +142,7 @@ class MinMaxStack
 end
 # stack = MinMaxStack.new
 # p stack.peek
+# p stack.min
 # stack.push(5)
 # stack.push(6)
 # stack.push(7)
@@ -174,4 +175,34 @@ class MinMaxStackQueue
         @in_stack.push(ele)
     end
 
+    def dequeue
+        reverse_stack if @out_stack.empty?
+        @out_stack.pop
+    end
+
+    def reverse_stack
+        @out_stack.push(@in_stack.pop) until @in_stack.empty?
+    end
+
+    def min
+        mins = []
+        mins.push(@in_stack.min) unless @in_stack.empty?
+        mins.push(@out_stack.min) unless @out_stack.empty?
+        mins.min
+    end
+
+    def max
+        maxs = []
+        maxs.push(@in_stack.max) unless @in_stack.empty?
+        maxs.push(@out_stack.max) unless @out_stack.empty?
+        maxs.max
+    end
 end
+
+# stack = MinMaxStackQueue.new
+# stack.enqueue(5)
+# stack.enqueue(6)
+# stack.enqueue(7)
+
+# p stack.min
+# p stack.max
